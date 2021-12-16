@@ -14,7 +14,8 @@ dnf install -y postgresql12-server postgresql12-devel postgresql12-libs
 dnf install -y postgresql11-server postgresql11-devel postgresql11-libs
 dnf install git cmake gcc make postgresql-devel postgresql-libs  -y
 
-yum-builddep -y /workspace/rpm/dbt2-bin.spec
+yum-builddep -y /workspace/rpm/dbt2.spec
+yum-builddep -y /workspace/rpm/dbt2-pgsql.spec
 
 git clone https://git.code.sf.net/p/osdldbt/dbt2 /tmp/dbt2
 cd /tmp/dbt2
@@ -22,46 +23,21 @@ git archive --format=tar.gz --prefix=dbt2-${VERSION}/ ${TAG} > /workspace/dbt2-$
 cd /
 
 for PGVERSION in 11 12 13 14; do
-	# Stats collection packages for all supported Postgres version
 	rpmbuild \
 		--clean \
 		--define "pgversion ${PGVERSION}" \
 		--define "pkgversion ${VERSION}" \
 		--define "_topdir ${PWD}/tmp/rpm" \
 		--define "_sourcedir ${PWD}/workspace" \
-		-bb /workspace/rpm/dbt2-bin-stats.spec
-	# Database creation packages for all supported Postgres version
-	rpmbuild \
-		--clean \
-		--define "pgversion ${PGVERSION}" \
-		--define "pkgversion ${VERSION}" \
-		--define "_topdir ${PWD}/tmp/rpm" \
-		--define "_sourcedir ${PWD}/workspace" \
-		-bb /workspace/rpm/dbt2-bin-dbcreation.spec
-	# Test execution package
-	rpmbuild \
-		--clean \
-		--define "pgversion ${PGVERSION}" \
-		--define "pkgversion ${VERSION}" \
-		--define "_topdir ${PWD}/tmp/rpm" \
-		--define "_sourcedir ${PWD}/workspace" \
-		-bb /workspace/rpm/dbt2-bin-exec.spec
-	# PostgreSQL extension
-	rpmbuild \
-		--clean \
-		--define "pgversion ${PGVERSION}" \
-		--define "pkgversion ${VERSION}" \
-		--define "_topdir ${PWD}/tmp/rpm" \
-		--define "_sourcedir ${PWD}/workspace" \
-		-bb /workspace/rpm/dbt2-ext.spec
+		-bb /workspace/rpm/dbt2-pgsql.spec
 done;
-# Report generation
+# Client, Driver and report generation tools
 rpmbuild \
 	--clean \
 	--define "pkgversion ${VERSION}" \
 	--define "_topdir ${PWD}/tmp/rpm" \
 	--define "_sourcedir ${PWD}/workspace" \
-	-bb /workspace/rpm/dbt2-bin-report.spec
+	-bb /workspace/rpm/dbt2.spec
 
 rm /workspace/dbt2-${VERSION}.tar.gz
 mkdir -p ${PWD}/workspace/rpm/build/
