@@ -7,4 +7,4 @@ services:
     - VERSION
     volumes:
     - ..:/workspace
-    command: /workspace/rpm/build.sh
+    command: /workspace/rpm/build.sh ${UID} ${GID}

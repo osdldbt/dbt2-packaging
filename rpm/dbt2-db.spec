@@ -1,18 +1,17 @@
 %global debug_package %{nil}
 %{!?pkgrevision: %global pkgrevision 1}
 %{!?pgversion: %global pgversion 14}
-%global pkgname dbt2
+%global pkgname dbt2-db
 %define installpath /usr/bin
 %define _unpackaged_files_terminate_build 0
 
 Name:          %{pkgname}
 Version:       %{pkgversion}
 Release:       %{pkgrevision}%{?dist}
-Summary:       TPC-C benchmark kit
+Summary:       Fair Use TPC-C benchmark kit - Database
 License:       The Artistic License
-Source:        dbt2-%{version}.tar.gz
+Source:        v%{version}.zip
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:      dbttools, R, libpq
 
 
 %description
@@ -30,12 +29,8 @@ make
 make install
 
 %files
-%{installpath}/dbt2-generate-report
-%{installpath}/dbt2-plot-transaction-rate
-%{installpath}/dbt2-client
-%{installpath}/dbt2-driver
-%{installpath}/dbt2-rand
-%{installpath}/dbt2-transaction-test
+# Binaries
+%{installpath}/dbt2-datagen
 
 %changelog
 * Fri Oct 15 2021 Julien Tachoires <julmon@gmail.com> - master-1
