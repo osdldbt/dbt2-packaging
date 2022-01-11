@@ -12,7 +12,6 @@ Summary:       Fair Use TPC-C benchmark kit - Driver
 License:       The Artistic License
 Source:        v%{version}.zip
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:      dbttools, R
 
 
 %description

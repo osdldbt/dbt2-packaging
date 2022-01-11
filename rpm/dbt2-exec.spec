@@ -12,7 +12,7 @@ Summary:       Fair Use TPC-C benchmark kit - Execution and reporting scripts
 License:       The Artistic License
 Source:        v%{version}.zip
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:      dbttools, R, dbt2-driver, gawk, openssh-clients, psmisc, rsync
+Requires:      dbttools, R-core, dbt2-driver, gawk, openssh-clients, psmisc, rsync
 
 
 %description
