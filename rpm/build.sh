@@ -18,7 +18,8 @@ yum-builddep -y /workspace/rpm/dbt2-client.spec
 yum-builddep -y /workspace/rpm/dbt2-db.spec
 yum-builddep -y /workspace/rpm/dbt2-driver.spec
 yum-builddep -y /workspace/rpm/dbt2-exec.spec
-yum-builddep -y /workspace/rpm/dbt2-pgsql.spec
+yum-builddep -y /workspace/rpm/dbt2-pgsql-c.spec
+yum-builddep -y /workspace/rpm/dbt2-pgsql-plpgsql.spec
 yum-builddep -y /workspace/rpm/dbt2-scripts.spec
 
 (cd /workspace && curl -OL https://github.com/osdldbt/dbt2/archive/refs/tags/${TAG}.zip)
@@ -30,8 +31,16 @@ for PGVERSION in 11 12 13 14; do
 		--define "pkgversion ${VERSION}" \
 		--define "_topdir ${PWD}/tmp/rpm" \
 		--define "_sourcedir ${PWD}/workspace" \
-		-bb /workspace/rpm/dbt2-pgsql.spec
+		-bb /workspace/rpm/dbt2-pgsql-c.spec
 done;
+
+# PostgreSQL PL/pgsql stored functions
+rpmbuild \
+	--clean \
+	--define "pkgversion ${VERSION}" \
+	--define "_topdir ${PWD}/tmp/rpm" \
+	--define "_sourcedir ${PWD}/workspace" \
+	-bb /workspace/rpm/dbt2-pgsql-plpgsql.spec
 
 # Binary for the client
 rpmbuild \
