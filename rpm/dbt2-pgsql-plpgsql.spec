@@ -1,8 +1,7 @@
 %global debug_package %{nil}
 %{!?pkgrevision: %global pkgrevision 1}
-%{!?pgversion: %global pgversion 14}
-%define installpath /usr/share
-%global pkgname dbt2-pgsql-plpgsql_%{pgversion}
+%define installpath /usr/share/dbt2
+%global pkgname dbt2-pgsql-plpgsql
 %define _unpackaged_files_terminate_build 0
 
 Name:          %{pkgname}
@@ -12,7 +11,6 @@ Summary:       Fair Use TPC-C benchmark kit - PostgreSQL PL/pgsql Stored Functio
 License:       The Artistic License
 Source:        v%{version}.zip
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:      postgresql%{pgversion}-server, llvm-libs, postgresql%{pgversion}
 
 
 %description
