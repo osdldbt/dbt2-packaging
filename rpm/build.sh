@@ -14,6 +14,8 @@ dnf install -y postgresql12-server postgresql12-devel postgresql12-libs
 dnf install -y postgresql11-server postgresql11-devel postgresql11-libs
 dnf install cmake gcc make postgresql-devel postgresql-libs  -y
 
+cp /workspace/rpm/*.patch /workspace/
+
 yum-builddep -y /workspace/rpm/dbt2-client.spec
 yum-builddep -y /workspace/rpm/dbt2-db.spec
 yum-builddep -y /workspace/rpm/dbt2-driver.spec

@@ -11,15 +11,17 @@ Release:       %{pkgrevision}%{?dist}
 Summary:       Fair Use TPC-C benchmark kit - Scripts
 License:       The Artistic License
 Source:        v%{version}.zip
+Patch0:        dbt2-pgsql-load-stored-procs.patch
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:      coreutils, procps-ng, sysstat
 
 
 %description
-TPC-C benchmark kit
+Fair Use TPC-C benchmark kit - Scripts
 
 %prep
 %setup -q -n dbt2-%{version}
+%patch0 -p1
 
 %build
 PATH=$PATH:/usr/pgsql-%{pgversion}/bin cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/%{installpath}/.. -DDBMS=pgsql

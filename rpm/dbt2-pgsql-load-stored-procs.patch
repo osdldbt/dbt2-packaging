@@ -1,0 +1,13 @@
+diff --git a/src/scripts/pgsql/dbt2-pgsql-load-stored-procs b/src/scripts/pgsql/dbt2-pgsql-load-stored-procs
+index 55d6f24..e7f8023 100755
+--- a/src/scripts/pgsql/dbt2-pgsql-load-stored-procs
++++ b/src/scripts/pgsql/dbt2-pgsql-load-stored-procs
+@@ -43,7 +43,7 @@ PSQL="psql -v ON_ERROR_STOP=1 -X ${PORTARG} -e -d ${DBT2DBNAME}"
+ 
+ if [ "${TYPE}" = "plpgsql" ]; then
+ 	echo "loading pl/pgsql stored functions..."
+-	SHAREDIR=`pg_config --sharedir`
++	SHAREDIR="/usr/share/dbt2"
+ 	${PSQL} -f ${SHAREDIR}/delivery.sql || exit 1
+ 	${PSQL} -f ${SHAREDIR}/new_order.sql || exit 1
+ 	${PSQL} -f ${SHAREDIR}/order_status.sql || exit 1
