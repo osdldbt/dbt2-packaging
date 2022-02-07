@@ -8,14 +8,14 @@
 Name:          %{pkgname}
 Version:       %{pkgversion}
 Release:       %{pkgrevision}%{?dist}
-Summary:       Fair Use TPC-C benchmark kit - Driver
+Summary:       Fair Use TPC-C benchmark kit - Driver (RTE Emulator)
 License:       The Artistic License
 Source:        v%{version}.zip
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 
 %description
-TPC-C benchmark kit
+Fair Use TPC-C benchmark kit - Driver (RTE Emulator)
 
 %prep
 %setup -q -n dbt2-%{version}

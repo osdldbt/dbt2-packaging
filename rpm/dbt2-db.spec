@@ -8,14 +8,14 @@
 Name:          %{pkgname}
 Version:       %{pkgversion}
 Release:       %{pkgrevision}%{?dist}
-Summary:       Fair Use TPC-C benchmark kit - Database
+Summary:       Fair Use TPC-C benchmark kit - Database Data Generator
 License:       The Artistic License
 Source:        v%{version}.zip
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 
 %description
-TPC-C benchmark kit
+Fair Use TPC-C benchmark kit - Database Data Generator
 
 %prep
 %setup -q -n dbt2-%{version}

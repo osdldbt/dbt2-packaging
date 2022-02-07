@@ -16,7 +16,7 @@ Requires:      dbttools, R-core, dbt2-driver, gawk, openssh-clients, psmisc, rsy
 
 
 %description
-TPC-C benchmark kit
+Fair Use TPC-C benchmark kit - Execution and reporting scripts
 
 %prep
 %setup -q -n dbt2-%{version}

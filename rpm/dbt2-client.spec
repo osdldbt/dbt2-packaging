@@ -16,7 +16,7 @@ Requires:      libpq
 
 
 %description
-TPC-C benchmark kit
+Fair Use TPC-C benchmark kit - Client
 
 %prep
 %setup -q -n dbt2-%{version}
