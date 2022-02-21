@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 %{!?pkgrevision: %global pkgrevision 1}
 %{!?pgversion: %global pgversion 14}
-%global pkgname dbt2-client
+%global pkgname dbt2-client-pgsql
 %define installpath /usr/bin
 %define _unpackaged_files_terminate_build 0
 

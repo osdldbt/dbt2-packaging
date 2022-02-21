@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # DBT2 version
-VERSION="0.42"
+VERSION="0.44.0"
 TAG="v$VERSION"
 
 dnf update -y
@@ -16,7 +16,7 @@ dnf install cmake gcc make postgresql-devel postgresql-libs  -y
 
 cp /workspace/rpm/*.patch /workspace/
 
-yum-builddep -y /workspace/rpm/dbt2-client.spec
+yum-builddep -y /workspace/rpm/dbt2-client-pgsql.spec
 yum-builddep -y /workspace/rpm/dbt2-db.spec
 yum-builddep -y /workspace/rpm/dbt2-driver.spec
 yum-builddep -y /workspace/rpm/dbt2-exec.spec
@@ -44,13 +44,20 @@ rpmbuild \
 	--define "_sourcedir ${PWD}/workspace" \
 	-bb /workspace/rpm/dbt2-pgsql-plpgsql.spec
 
-# Binary for the client
+# Binaries for the client
 rpmbuild \
 	--clean \
 	--define "pkgversion ${VERSION}" \
 	--define "_topdir ${PWD}/tmp/rpm" \
 	--define "_sourcedir ${PWD}/workspace" \
-	-bb /workspace/rpm/dbt2-client.spec
+	-bb /workspace/rpm/dbt2-client-cockroach.spec
+
+rpmbuild \
+	--clean \
+	--define "pkgversion ${VERSION}" \
+	--define "_topdir ${PWD}/tmp/rpm" \
+	--define "_sourcedir ${PWD}/workspace" \
+	-bb /workspace/rpm/dbt2-client-pgsql.spec
 
 # Binary for the DB
 rpmbuild \
