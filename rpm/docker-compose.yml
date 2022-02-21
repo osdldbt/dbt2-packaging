@@ -2,7 +2,7 @@ version: '3'
 
 services:
   dbt2-bin-centos8:
-    image: centos:8
+    image: rockylinux:8
     environment:
     - VERSION
     volumes:
