@@ -50,7 +50,7 @@ rpmbuild \
 	--define "pkgversion ${VERSION}" \
 	--define "_topdir ${PWD}/tmp/rpm" \
 	--define "_sourcedir ${PWD}/workspace" \
-	-bb /workspace/rpm/dbt2-client-cockroach.spec
+	-bb /workspace/rpm/dbt2-client-cockroachdb.spec
 
 rpmbuild \
 	--clean \
