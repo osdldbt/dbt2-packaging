@@ -24,17 +24,29 @@ Fair Use TPC-C benchmark kit - Scripts
 %patch0 -p1
 
 %build
+# Note we are building for pgsql but we can install general and other non-pgsql
+# scripts.  This is something that should be improved in DBT-2's build system.
 PATH=$PATH:/usr/pgsql-%{pgversion}/bin cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/%{installpath}/.. -DDBMS=pgsql
 make
 
 %install
 %{__install} -d %{buildroot}/%{installpath}
+# Copy non-pgsql scripts by hand until the DBT-2 build system is improved.
+cp -p src/scripts/cockroach/dbt2-cockroach-build-db %{buildroot}/%{installpath}/
+cp -p src/scripts/cockroach/dbt2-cockroach-create-indexes %{buildroot}/%{installpath}/
+cp -p src/scripts/cockroach/dbt2-cockroach-create-tables %{buildroot}/%{installpath}/
+cp -p src/scripts/yugabyte/dbt2-yugabyte-build-db %{buildroot}/%{installpath}/
+cp -p src/scripts/yugabyte/dbt2-yugabyte-create-indexes %{buildroot}/%{installpath}/
 make install
 
 %files
 # General Scripts
 %{installpath}/dbt2-get-os-info
 %{installpath}/dbt2-sysstats
+# CockroachDB Scripts
+%{installpath}/dbt2-cockroach-build-db
+%{installpath}/dbt2-cockroach-create-indexes
+%{installpath}/dbt2-cockroach-create-tables
 # PostgreSQL Scripts
 %{installpath}/dbt2-pgsql-backup
 %{installpath}/dbt2-pgsql-build-db
@@ -55,6 +67,9 @@ make install
 %{installpath}/dbt2-pgsql-start-db
 %{installpath}/dbt2-pgsql-stop-db
 %{installpath}/dbt2-pgsql-test
+# YugabyteDB Scripts
+%{installpath}/dbt2-yugabyte-build-db
+%{installpath}/dbt2-yugabyte-create-indexes
 # Binaries
 %{installpath}/dbt2-rand
 
