@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # DBT2 version
-VERSION="0.45.0"
+VERSION="0.45.1"
 TAG="v$VERSION"
 
 dnf update -y
