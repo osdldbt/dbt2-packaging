@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 %{!?pkgrevision: %global pkgrevision 1}
 %{!?pgversion: %global pgversion 14}
-%global pkgname dbt2-client-pgsql
+%global pkgname dbt2-client
 %define installpath /usr/bin
 %define _unpackaged_files_terminate_build 0
 
@@ -22,7 +22,7 @@ Fair Use TPC-C benchmark kit - Client
 %setup -q -n dbt2-%{version}
 
 %build
-PATH=$PATH:/usr/pgsql-%{pgversion}/bin cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/%{installpath}/.. -DDBMS=pgsql
+PKG_CONFIG_PATH="/usr/pgsql-%{pgversion}/lib/pkgconfig" PATH=$PATH:/usr/pgsql-%{pgversion}/bin cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/%{installpath}/..
 make
 
 %install

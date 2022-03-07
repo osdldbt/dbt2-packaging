@@ -21,7 +21,7 @@ Fair Use TPC-C benchmark kit - Driver (RTE Emulator)
 %setup -q -n dbt2-%{version}
 
 %build
-PATH=$PATH:/usr/pgsql-%{pgversion}/bin cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/%{installpath}/.. -DDBMS=pgsql
+PKG_CONFIG_PATH="/usr/pgsql-%{pgversion}/lib/pkgconfig" PATH=$PATH:/usr/pgsql-%{pgversion}/bin cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/%{installpath}/..
 make
 
 %install

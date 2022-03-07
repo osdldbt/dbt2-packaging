@@ -26,7 +26,9 @@ Fair Use TPC-C benchmark kit - Scripts
 %build
 # Note we are building for pgsql but we can install general and other non-pgsql
 # scripts.  This is something that should be improved in DBT-2's build system.
-PATH=$PATH:/usr/pgsql-%{pgversion}/bin cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/%{installpath}/.. -DDBMS=pgsql
+export PKG_CONFIG_PATH="/usr/pgsql-%{pgversion}/lib/pkgconfig"
+export PATH="$PATH:/usr/pgsql-%{pgversion}/bin"
+cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/%{installpath}/..
 make
 
 %install

@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # DBT2 version
-VERSION="0.45.1"
+VERSION="0.46.0"
 TAG="v$VERSION"
 
 dnf update -y
@@ -12,11 +12,12 @@ dnf install -y postgresql14-server postgresql14-devel postgresql14-libs
 dnf install -y postgresql13-server postgresql13-devel postgresql13-libs
 dnf install -y postgresql12-server postgresql12-devel postgresql12-libs
 dnf install -y postgresql11-server postgresql11-devel postgresql11-libs
-dnf install cmake gcc make postgresql-devel postgresql-libs  -y
+dnf install -y cmake gcc make openssl-devel postgresql-devel postgresql-libs \
+		sqlite-devel
 
 cp /workspace/rpm/*.patch /workspace/
 
-yum-builddep -y /workspace/rpm/dbt2-client-pgsql.spec
+yum-builddep -y /workspace/rpm/dbt2-client.spec
 yum-builddep -y /workspace/rpm/dbt2-db.spec
 yum-builddep -y /workspace/rpm/dbt2-driver.spec
 yum-builddep -y /workspace/rpm/dbt2-exec.spec
@@ -24,7 +25,7 @@ yum-builddep -y /workspace/rpm/dbt2-pgsql-c.spec
 yum-builddep -y /workspace/rpm/dbt2-pgsql-plpgsql.spec
 yum-builddep -y /workspace/rpm/dbt2-scripts.spec
 
-(cd /workspace && curl -OL https://github.com/osdldbt/dbt2/archive/refs/tags/${TAG}.zip)
+(cd /workspace && curl -OL https://github.com/markwkm/dbt2/archive/refs/tags/${TAG}.zip)
 
 for PGVERSION in 11 12 13 14; do
 	rpmbuild \
@@ -50,14 +51,7 @@ rpmbuild \
 	--define "pkgversion ${VERSION}" \
 	--define "_topdir ${PWD}/tmp/rpm" \
 	--define "_sourcedir ${PWD}/workspace" \
-	-bb /workspace/rpm/dbt2-client-cockroachdb.spec
-
-rpmbuild \
-	--clean \
-	--define "pkgversion ${VERSION}" \
-	--define "_topdir ${PWD}/tmp/rpm" \
-	--define "_sourcedir ${PWD}/workspace" \
-	-bb /workspace/rpm/dbt2-client-pgsql.spec
+	-bb /workspace/rpm/dbt2-client.spec
 
 # Binary for the DB
 rpmbuild \
