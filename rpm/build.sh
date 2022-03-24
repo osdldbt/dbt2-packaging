@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # DBT2 version
-VERSION="0.46.0"
+VERSION="0.46.1"
 TAG="v$VERSION"
 
 dnf update -y
@@ -25,7 +25,7 @@ yum-builddep -y /workspace/rpm/dbt2-pgsql-c.spec
 yum-builddep -y /workspace/rpm/dbt2-pgsql-plpgsql.spec
 yum-builddep -y /workspace/rpm/dbt2-scripts.spec
 
-(cd /workspace && curl -OL https://github.com/markwkm/dbt2/archive/refs/tags/${TAG}.zip)
+(cd /workspace && curl -OL https://github.com/osdldbt/dbt2/archive/refs/tags/${TAG}.zip)
 
 for PGVERSION in 11 12 13 14; do
 	rpmbuild \
