@@ -13,7 +13,7 @@ dnf install -y postgresql13-server postgresql13-devel postgresql13-libs
 dnf install -y postgresql12-server postgresql12-devel postgresql12-libs
 dnf install -y postgresql11-server postgresql11-devel postgresql11-libs
 dnf install -y cmake gcc make openssl-devel postgresql-devel postgresql-libs \
-		sqlite-devel
+		sqlite-devel libev-devel
 
 cp /workspace/rpm/*.patch /workspace/
 

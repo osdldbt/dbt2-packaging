@@ -12,6 +12,7 @@ Summary:       Fair Use TPC-C benchmark kit - Driver (RTE Emulator)
 License:       The Artistic License
 Source:        v%{version}.zip
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:      libev
 
 
 %description
@@ -30,6 +31,8 @@ make install
 
 %files
 %{installpath}/dbt2-driver
+%{installpath}/dbt2-driver2
+%{installpath}/dbt2-driver3
 
 %changelog
 * Fri Oct 15 2021 Julien Tachoires <julmon@gmail.com> - master-1
