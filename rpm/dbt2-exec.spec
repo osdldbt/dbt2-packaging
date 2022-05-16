@@ -23,14 +23,12 @@ Fair Use TPC-C benchmark kit - Execution and reporting scripts
 %install
 mkdir -p %{buildroot}/%{installpath}
 cp -p src/scripts/dbt2-generate-report %{buildroot}/%{installpath}/
-cp -p src/scripts/dbt2-plot-transaction-rate %{buildroot}/%{installpath}/
 cp -p src/scripts/dbt2-post-process %{buildroot}/%{installpath}/
 cp -p src/scripts/dbt2-run-workload %{buildroot}/%{installpath}/
 cp -p src/scripts/pgsql/dbt2-pgsql-report %{buildroot}/%{installpath}/
 
 %files
 %{installpath}/dbt2-generate-report
-%{installpath}/dbt2-plot-transaction-rate
 %{installpath}/dbt2-post-process
 %{installpath}/dbt2-run-workload
 
