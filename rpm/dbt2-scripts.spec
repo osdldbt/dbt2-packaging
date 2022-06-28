@@ -49,6 +49,7 @@ make install
 %{installpath}/dbt2-cockroach-build-db
 %{installpath}/dbt2-cockroach-create-indexes
 %{installpath}/dbt2-cockroach-create-tables
+%{installpath}/dbt2-cockroach-load-db
 # PostgreSQL Scripts
 %{installpath}/dbt2-pgsql-backup
 %{installpath}/dbt2-pgsql-build-db
@@ -72,6 +73,7 @@ make install
 # YugabyteDB Scripts
 %{installpath}/dbt2-yugabyte-build-db
 %{installpath}/dbt2-yugabyte-create-indexes
+%{installpath}/dbt2-yugabyte-load-db
 # Binaries
 %{installpath}/dbt2-rand
 
