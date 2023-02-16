@@ -6,15 +6,30 @@ on:
 
 name: Upload Release Asset
 jobs:
-  build:
+  rpm:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: |
         set -x
         make -C rpm/
         assets=()
         for asset in ./rpm/build/*.rpm; do
+          assets+=("-a" "$asset")
+        done
+        tag_name="${GITHUB_REF##*/}"
+        hub release create "${assets[@]}" -m "$tag_name" "$tag_name"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  appimage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: |
+        set -x
+        make -C appimage/
+        assets=()
+        for asset in $(find . -name '*.AppImage'); do
           assets+=("-a" "$asset")
         done
         tag_name="${GITHUB_REF##*/}"

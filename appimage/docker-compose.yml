@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  dbt2-appimage:
+    image: centos:7
+    environment:
+    - VERSION
+    volumes:
+    - ..:/workspace
+    command: /workspace/appimage/build.sh ${UID} ${GID}
