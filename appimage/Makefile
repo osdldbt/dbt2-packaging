@@ -4,7 +4,7 @@ UID := $(shell id -u $(USER))
 GID := $(shell id -g $(USER))
 
 default:
-	env UID=$(UID) GID=$(GID) docker-compose run --rm dbt2-appimage
+	sh build.sh
 
 clean:
 	rm build/*.rpm
